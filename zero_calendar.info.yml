@@ -1,0 +1,6 @@
+name: 'Zero Calendar'
+type: module
+description: 'Create ics files.'
+core_version_requirement: ">=8"
+package: zero
+version: 1.0.0

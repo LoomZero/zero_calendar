@@ -1,0 +1,6 @@
+zero_calendar.generate:
+  path: '/api/generate/ics'
+  defaults:
+    _controller: '\Drupal\zero_calendar\Controller\CalendarController:generate'
+  requirements:
+    _access: 'TRUE'
