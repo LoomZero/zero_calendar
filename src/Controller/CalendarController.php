@@ -16,7 +16,7 @@ class CalendarController extends ControllerBase {
   public function generate() {
     $title = Drupal::request()->get('title');
     $start = Drupal::request()->get('start');
-    $interval = Drupal::request()->get('interval');
+    $repeat = Drupal::request()->get('repeat');
 
     if (empty($title) || empty($start)) {
       throw new BadRequestHttpException('The parameter "title" and "start" are required.');
@@ -24,8 +24,8 @@ class CalendarController extends ControllerBase {
 
     $event = Event::create($title);
     $event->startsAt(new DateTime(date('D, d M Y H:i:s', $start)));
-    if ($interval) {
-      $event->rrule(RRule::frequency($interval));
+    if ($repeat) {
+      $event->rrule(RRule::frequency($repeat));
     }
 
     return new Response(Calendar::create($title)->event($event)->get(), 200, [
