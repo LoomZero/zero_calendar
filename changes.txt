@@ -1,0 +1,5 @@
+# Version 1.0.1 - Fixes
+
+- Fix wrong named parameter `interval` to `repeat`
+
+# Version 1.0.0 - Init
