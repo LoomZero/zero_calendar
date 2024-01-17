@@ -7,6 +7,7 @@ use Drupal;
 use Drupal\Core\Controller\ControllerBase;
 use Spatie\IcalendarGenerator\Components\Calendar;
 use Spatie\IcalendarGenerator\Components\Event;
+use Spatie\IcalendarGenerator\Enums\RecurrenceFrequency;
 use Spatie\IcalendarGenerator\ValueObjects\RRule;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -25,7 +26,7 @@ class CalendarController extends ControllerBase {
     $event = Event::create($title);
     $event->startsAt(new DateTime(date('D, d M Y H:i:s', $start)));
     if ($repeat) {
-      $event->rrule(RRule::frequency($repeat));
+      $event->rrule(RRule::frequency(RecurrenceFrequency::from($repeat)));
     }
 
     return new Response(Calendar::create($title)->event($event)->get(), 200, [
