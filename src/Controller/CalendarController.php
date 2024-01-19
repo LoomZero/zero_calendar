@@ -18,6 +18,7 @@ class CalendarController extends ControllerBase {
     $title = Drupal::request()->get('title');
     $start = Drupal::request()->get('start');
     $repeat = Drupal::request()->get('repeat');
+    $filename = Drupal::request()->get('filename');
 
     if (empty($title) || empty($start)) {
       throw new BadRequestHttpException('The parameter "title" and "start" are required.');
