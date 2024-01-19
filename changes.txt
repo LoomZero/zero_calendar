@@ -1,6 +1,10 @@
+# Version 1.0.3 - Add filename change
+
+- Add method `filename(string $filename = NULL)` to change filename
+
 # Version 1.0.2 - Patches
 
-- Patch wrong value used for `repeat` on `CalendarController` 
+- Patch wrong value used for `repeat` on `CalendarController`
 
 # Version 1.0.1 - Fixes
 

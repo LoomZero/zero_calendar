@@ -43,6 +43,10 @@ class CalendarGenerateItem {
     return $this->setParameter('repeat', $repeat);
   }
 
+  public function filename(string $filename = NULL): self {
+    return $this->setParameter('filename', $filename);
+  }
+
   public function generateURL(): Url {
     return Url::fromRoute('zero_calendar.generate', [], [
       'query' => $this->parameters,

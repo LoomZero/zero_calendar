@@ -29,9 +29,14 @@ class CalendarController extends ControllerBase {
       $event->rrule(RRule::frequency(RecurrenceFrequency::from($repeat)));
     }
 
-    return new Response(Calendar::create($title)->event($event)->get(), 200, [
+    $http_options = [
       'Content-Type' => 'text/calendar; charset=utf-8',
-    ]);
+    ];
+    if ($filename) {
+      $http_options['Content-Disposition'] = 'attachment; filename="' . $filename . '.ics"';
+    }
+
+    return new Response(Calendar::create($title)->event($event)->get(), 200, $http_options);
   }
 
 }
