@@ -2,6 +2,7 @@
 
 namespace Drupal\zero_calendar\Controller;
 
+use DateInterval;
 use DateTime;
 use Drupal;
 use Drupal\Core\Controller\ControllerBase;
@@ -17,6 +18,8 @@ class CalendarController extends ControllerBase {
   public function generate() {
     $title = Drupal::request()->get('title');
     $start = Drupal::request()->get('start');
+    $end = Drupal::request()->get('end');
+    $duration = Drupal::request()->get('duration');
     $repeat = Drupal::request()->get('repeat');
     $filename = Drupal::request()->get('filename');
 
@@ -26,6 +29,16 @@ class CalendarController extends ControllerBase {
 
     $event = Event::create($title);
     $event->startsAt(new DateTime(date('D, d M Y H:i:s', $start)));
+    if ($duration) {
+      $end = (new DateTime(date('D, d M Y H:i:s', $start)))->add(new DateInterval('PT15M'));
+    }
+    if ($end) {
+      if (is_string($end)) {
+        $event->startsAt(new DateTime(date('D, d M Y H:i:s', $end)));
+      } else {
+        $event->endsAt($end);
+      }
+    }
     if ($repeat) {
       $event->rrule(RRule::frequency(RecurrenceFrequency::from($repeat)));
     }

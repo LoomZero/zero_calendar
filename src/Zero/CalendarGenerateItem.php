@@ -39,6 +39,14 @@ class CalendarGenerateItem {
     return $this->setParameter('start', $start);
   }
 
+  public function end(int $end): self {
+    return $this->setParameter('end', $end);
+  }
+
+  public function duration(string $duration): self {
+    return $this->setParameter('duration', $duration);
+  }
+
   public function repeat(string $repeat = NULL): self {
     return $this->setParameter('repeat', $repeat);
   }
