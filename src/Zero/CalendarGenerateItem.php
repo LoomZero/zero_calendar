@@ -47,11 +47,11 @@ class CalendarGenerateItem {
     return $this->setParameter('duration', $duration);
   }
 
-  public function repeat(string $repeat = NULL): self {
+  public function repeat(?string $repeat = NULL): self {
     return $this->setParameter('repeat', $repeat);
   }
 
-  public function filename(string $filename = NULL): self {
+  public function filename(?string $filename = NULL): self {
     return $this->setParameter('filename', $filename);
   }
 
